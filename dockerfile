@@ -17,11 +17,11 @@ WORKDIR /home/steam
 
 RUN wget -O ./steamcmd_linux.tar.gz "http://media.steampowered.com/client/steamcmd_linux.tar.gz" &&\
 	tar -xvzf ./steamcmd_linux.tar.gz &&\
-	wget -O ./gmod/garrysmod/cfg/mount.cfg "https://raw.githubusercontent.com/Laynezilla/docker-gmod-prophunt/master/mount.cfg" &&
+	wget -O ./gmod/garrysmod/cfg/mount.cfg "https://raw.githubusercontent.com/mommalongnips/garrysmod/master/mount.cfg" &&
 
 WORKDIR /
 
-RUN wget -O ./bootstart.sh "https://raw.githubusercontent.com/Laynezilla/docker-gmod/master/bootstart.sh" && \
+RUN wget -O ./bootstart.sh "https://raw.githubusercontent.com/mommalongnips/garrysmod/master/bootstart.sh" && \
 	chmod +x ./bootstart.sh
 
 ENV MAP="gm_flatgrass"
