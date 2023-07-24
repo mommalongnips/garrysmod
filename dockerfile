@@ -6,7 +6,7 @@ ENV LANG en_US.utf8
 
 RUN dpkg --add-architecture i386 && \
 	apt-get update -y && \
-	apt-get install -y wget unzip nano sudo lib32tinfo5 locales locales-all lib32ncurses5 lib32z1 lib32gcc1 lib32stdc++6 && \
+	apt-get install -y wget unzip nano sudo locales locales-all lib32z1 lib32gcc-s1 lib32stdc++6 && \
 	rm -rf /var/lib/apt/lists/* && \
 	localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 && \
 	useradd -m steam
