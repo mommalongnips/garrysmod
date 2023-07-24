@@ -1,24 +1,19 @@
-# http://wiki.garrysmod.com/page/Linux_Dedicated_Server_Hosting
-# https://bitbucket.org/xspacesoft/prophunt-hidenseek-original/
 FROM ubuntu
 
 ENV LANG en_US.utf8
 
 RUN dpkg --add-architecture i386 && \
-	apt-get update -y && \
-	apt-get install -y wget unzip nano sudo locales locales-all lib32z1 lib32gcc-s1 lib32stdc++6 && \
-	rm -rf /var/lib/apt/lists/* && \
-	localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 && \
-	useradd -m steam
+        apt-get update -y && \
+        apt-get install -y wget unzip nano sudo locales locales-all lib32z1 lib32gcc-s1 lib32stdc++6 && \
+        rm -rf /var/lib/apt/lists/* && \
+        localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 && \
+        useradd -m steam
 
 WORKDIR /
 
-RUN sudo wget -O ./bootstart.sh "https://raw.githubusercontent.com/mommalongnips/garrysmod/master/bootstart.sh" && \
-	sudo chmod +x ./bootstart.sh && \
-    sudo mkdir /home/steam && \
+COPY ./bootstart.sh ./
+RUN sudo chmod +x ./bootstart.sh && \
     sudo chown steam:steam ./bootstart.sh /home/steam
-
-USER steam
 
 ENV MAP="gm_flatgrass"
 ENV MAX_PLAYERS="12"
