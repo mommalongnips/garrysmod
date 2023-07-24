@@ -1,0 +1,10 @@
+services:
+    docker-gmod:
+        container_name: garrysmod
+        environment:
+            - WORKSHOP_COLLECTION=
+            - AUTH_KEY=
+        ports:
+            - '27015:27015'
+            - '27015:27015/udp'
+        image: 'mommalongnips/garrysmod'
