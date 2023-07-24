@@ -11,18 +11,14 @@ RUN dpkg --add-architecture i386 && \
 	localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 && \
 	useradd -m steam
 
-USER steam
-
-WORKDIR /home/steam
-
-RUN wget -O ./steamcmd_linux.tar.gz "http://media.steampowered.com/client/steamcmd_linux.tar.gz" &&\
-	tar -xvzf ./steamcmd_linux.tar.gz &&\
-	wget -O ./gmod/garrysmod/cfg/mount.cfg "https://raw.githubusercontent.com/mommalongnips/garrysmod/master/mount.cfg" &&
-
 WORKDIR /
 
-RUN wget -O ./bootstart.sh "https://raw.githubusercontent.com/mommalongnips/garrysmod/master/bootstart.sh" && \
-	chmod +x ./bootstart.sh
+RUN sudo wget -O ./bootstart.sh "https://raw.githubusercontent.com/mommalongnips/garrysmod/master/bootstart.sh" && \
+	sudo chmod +x ./bootstart.sh && \
+    sudo mkdir /home/steam && \
+    sudo chown steam:steam ./bootstart.sh /home/steam
+
+USER steam
 
 ENV MAP="gm_flatgrass"
 ENV MAX_PLAYERS="12"
